@@ -397,7 +397,7 @@ class WifiphisherEngine:
             self.stop()
 
         if not args.internetinterface:
-            kill_interfering_procs()
+            #kill_interfering_procs()
             logger.info("Killing all interfering processes")
 
         rogue_ap_mac = self.network_manager.get_interface_mac(ap_iface)
