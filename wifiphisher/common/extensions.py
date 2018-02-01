@@ -144,7 +144,7 @@ class ExtensionManager(object):
 
         # set the current channel to the ap channel
         self._nm.set_interface_channel(self._interface,
-                                       int(self._current_channel))
+                                       int(self._shared_data.target_ap_channel))
 
         # if the stop flag not set, change the channel
         while self._should_continue:
@@ -363,13 +363,11 @@ class ExtensionManager(object):
         """
 
         # continue to find clients until told otherwise
-        while self._should_continue:
-            dot11.sniff(
-                iface=self._interface,
-                prn=self._process_packet,
-                count=1,
-                store=0,
-                stop_filter=self._stopfilter)
+        dot11.sniff(
+            iface=self._interface,
+            prn=self._process_packet,
+            store=0,
+            stop_filter=self._stopfilter)
 
     def _send(self):
         """
